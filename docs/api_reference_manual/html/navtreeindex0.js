@@ -1,0 +1,24 @@
+var NAVTREEINDEX0 =
+{
+"group__group__eth__phy__driver__enums.html":[1,0],
+"group__group__eth__phy__driver__enums.html#gacd32c758fc36e82f978ca000c9748a13":[1,0,0],
+"group__group__eth__phy__driver__enums.html#ggacd32c758fc36e82f978ca000c9748a13a0f1537000eb48d74c1eaf7cf12c04462":[1,0,0,2],
+"group__group__eth__phy__driver__enums.html#ggacd32c758fc36e82f978ca000c9748a13a33a86ab651d63a6110dbdd8bd7974634":[1,0,0,1],
+"group__group__eth__phy__driver__enums.html#ggacd32c758fc36e82f978ca000c9748a13a82c05a950c7daea8bc2d0caa2fa7c4f6":[1,0,0,0],
+"group__group__eth__phy__driver__functions.html":[1,1],
+"group__group__eth__phy__driver__functions.html#ga1e008668521594de19b93ca334eab6f2":[1,1,10],
+"group__group__eth__phy__driver__functions.html#ga34668915de5afc75aacc5ca7bbdd493b":[1,1,7],
+"group__group__eth__phy__driver__functions.html#ga4590e2300d3e0ab5dd4aafae9ab023f0":[1,1,0],
+"group__group__eth__phy__driver__functions.html#ga4e6efb657c043d99100cf0d39f73d159":[1,1,2],
+"group__group__eth__phy__driver__functions.html#ga9bb5a4a955f547b55442d9d5d6908963":[1,1,1],
+"group__group__eth__phy__driver__functions.html#gaa218c87576bb9df2dd21a0c35f543e72":[1,1,3],
+"group__group__eth__phy__driver__functions.html#gab009b8dab3d09ef6767f5a40849feb88":[1,1,4],
+"group__group__eth__phy__driver__functions.html#gabc8491f945172c7ab2151edaf7085f54":[1,1,6],
+"group__group__eth__phy__driver__functions.html#gac8e94f0dfd1ff059d90dae45be0036af":[1,1,5],
+"group__group__eth__phy__driver__functions.html#gaccf72e8dbe218b27e3d9c5b3f3f11cb1":[1,1,9],
+"group__group__eth__phy__driver__functions.html#gacd393f44a5670c38b9d9921ca8e14756":[1,1,8],
+"index.html":[],
+"index.html":[0],
+"modules.html":[1],
+"pages.html":[]
+};
