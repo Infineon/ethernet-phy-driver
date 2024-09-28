@@ -11,6 +11,12 @@ See the [README.md](./README.md) for a complete description of the [Ethernet PHY
 
 ## Changelog
 
+### v1.1.0
+
+- Provides ethernet APIs to configuring ethernet PHY drivers for DP83825I.
+- Removed Ethernet port pin Configurations. The pins are configured from device configurator and initialization will happen during bsp init.
+- Added support to read parameters from device configurator.
+
 ### v1.0.0
 
 - Initial release for Ethernet PHY Driver library
