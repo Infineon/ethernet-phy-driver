@@ -29,17 +29,17 @@
  * including Cypress's product in a High Risk Product, the manufacturer
  * of such system or application assumes all risk of such use and in doing
  * so agrees to indemnify Cypress against all liability.
-*/
+ */
 
 /**
-* @file cy_eth_phy_dp83825i.c
+* @file cy_eth_phy_lan8710ai.c
 * @brief Provides implementation of PHY operation callbacks required by ECM.
-* This implementation is valid only for PHY hardware part dp83825i.
+* This implementation is valid only for PHY hardware part LAN8710AI.
 */
+
 #include "cycfg.h"
 
-#if defined(ETH_PHY_DP83825I)
-
+#if defined(ETH_PHY_LAN8710AI)
 #include "cy_eth_phy_driver.h"
 #include "cy_result.h"
 #include "cyabs_rtos.h"
@@ -47,37 +47,51 @@
 /********************************************************/
 /******************EMAC configuration********************/
 /********************************************************/
+#define EMAC_MII             0
 #define EMAC_RMII            1
+#define EMAC_GMII            2
+#define EMAC_RGMII           3
 
 /********************************************************/
 /** PHY Mode Selection       */
+#if (defined (eth_1_ENABLED) && (eth_1_ENABLED == 1u))
+#define EMAC_INTERFACE       eth_1_PHY_INTERFACE
+#define PHY_ADDR             eth_1_PHY_ADDR
+#endif
+
 #if (defined (eth_0_ENABLED) && (eth_0_ENABLED == 1u))
 #define EMAC_INTERFACE       eth_0_PHY_INTERFACE
 #define PHY_ADDR             eth_0_PHY_ADDR
 #endif
 
 /********************************************************/
-#define REGISTER_ADDRESS_PHY_REG_BMCR           PHYREG_00_BMCR           /* BMCR register (0x0000) to read the speed and duplex mode */
-#define REGISTER_PHY_REG_DUPLEX_MASK            PHYBMCR_FULL_DUPLEX_Msk  /* Bit 8 of BMCR register to read the duplex mode */
-#define REGISTER_PHY_REG_SPEED_MASK             (0x2000)                 /* Bit 13 of BMCR register to read the speed */
-#define REGISTER_PHY_REG_SPEED_MASK_10M         (0x0000)                 /* Set to 0 for 10M speed */
-#define REGISTER_PHY_REG_SPEED_MASK_100M        (0x2000)                 /* Set to 1 for 100M speed */
+/* Bits masks to verify auto negotiation configured speed */
+#define ANLPAR_10_Msk                           (0x00000020UL)  /**< 10BASE-Te Support */
+#define ANLPAR_10_Pos                           (5UL)           /**< 10BASE-Te bit position */
+#define ANLPAR_10FD_Msk                         (0x00000040UL)  /**< 10BASE-Te Full Duplex Support */
+#define ANLPAR_10FD_Pos                         (6UL)           /**< 10BASE-Te Full Duplex bit position */
 
+#define ANLPAR_TX_Msk                           (0x00000080UL)  /**< 100BASE-TX Support */
+#define ANLPAR_TX_Pos                           (7UL)           /**< 100BASE-TX bit position */
+#define ANLPAR_TXFD_Msk                         (0x00000100UL)  /**< 100BASE-TX Full Duplex Support */
+#define ANLPAR_TXFD_Pos                         (8UL)           /**< 100BASE-TX Full Duplex bit position */
+#define ANLPAR_T4_Msk                           (0x00000200UL)  /**< 100BASE-T4 Support */
+#define ANLPAR_T4_Pos                           (9UL)           /**< 100BASE-T4 bit position */
+
+#define STS1_1000BASE_T_HALFDUPLEX_Msk          (0x00000400UL)  /**< 1000BASE-T Half-Duplex Capable */
+#define STS1_1000BASE_T_HALFDUPLEX_Pos          (10UL)          /**< 1000BASE-T Half-Duplex bit position */
+#define STS1_1000BASE_T_FULLDUPLEX_Msk          (0x00000800UL)  /**< 1000BASE-T Full-Duplex Capable */
+#define STS1_1000BASE_T_FULLDUPLEX_Pos          (11UL)          /**< 1000BASE-T Full-Duplex bit position */
+
+#define REGISTER_ADDRESS_PHY_REG_BMCR       PHYREG_00_BMCR          /* BMCR register (0x0000) to read the speed and duplex mode */
+#define REGISTER_PHY_REG_DUPLEX_MASK        PHYBMCR_FULL_DUPLEX_Msk /* Bit 8 of BMCR register to read the duplex mode */
+#define REGISTER_PHY_REG_SPEED_MASK         (0x2040)                /* Bit 6, 13: BMCR register to read the speed */
+#define REGISTER_PHY_REG_SPEED_MASK_10M     (0x0000)                /* Bit 6, 13: Both are set to 0 for 10M speed */
+#define REGISTER_PHY_REG_SPEED_MASK_100M    (0x2000)                /* Bit 6, 13: Set to 0 and 1 respectively for 100M speed */
+#define REGISTER_PHY_REG_SPEED_MASK_1000M   (0x0040)                /* Bit 6, 13: Set to 1 and 0 respectively for 1000M speed */
 
 /********************************************************/
-
-static cy_stc_ephy_t phyObj;
-
-cy_rslt_t enable_phy_dp83825i_extended_reg(ETH_Type *reg_base)
-{
-    cy_rslt_t    result = CY_RSLT_SUCCESS;
-
-    Cy_ETHIF_PhyRegWrite(reg_base, 0x09, 0x0020, PHY_ADDR); /* Enable Robust Auto-MDIX */
-    Cy_ETHIF_PhyRegWrite(reg_base, 0x1F, 0x4000, PHY_ADDR); /* PHY soft reset */
-    cy_rtos_delay_milliseconds(30);                         /* Some delay to get the PHY adapted to new settings */
-
-    return result;
-}
+cy_stc_ephy_t phyObj;
 
 void cy_eth0_phy_read(uint32_t phyId, uint32_t regAddress, uint32_t *value)
 {
@@ -166,8 +180,8 @@ cy_rslt_t cy_eth_phy_reset(uint8_t eth_idx, ETH_Type *reg_base)
     cy_eth_phy_log_msg(CYLF_MIDDLEWARE, CY_LOG_DEBUG1, "%s(): START \n", __FUNCTION__);
     /* Reset the PHY */
     phy_res = Cy_EPHY_Reset(&phyObj);
-    phy_res |= Cy_ETHIF_PhyRegWrite(reg_base, 0x1F, 0x8000, PHY_ADDR); /* Ext-Reg CTRl: Perform a full reset, including all registers  */
-    cy_rtos_delay_milliseconds(30);    /* Required delay of 30 ms to get PHY back to Run state after reset */
+
+    cy_rtos_delay_milliseconds(2000);    /* Required delay to get PHY back to Run state after reset */
     if(phy_res != CY_EPHY_SUCCESS)
     {
         cy_eth_phy_log_msg(CYLF_MIDDLEWARE, CY_LOG_ERR, "Cy_EPHY_Reset failed with error :  %d \n", (int)phy_res);
@@ -200,14 +214,10 @@ cy_rslt_t cy_eth_phy_enable_ext_reg(ETH_Type *reg_base, uint32_t phy_speed)
 {
     cy_rslt_t    result = CY_RSLT_SUCCESS;
 
-    cy_eth_phy_log_msg(CYLF_MIDDLEWARE, CY_LOG_DEBUG1, "%s(): START \n", __FUNCTION__);
-    result = enable_phy_dp83825i_extended_reg(reg_base);
-    if(result != CY_RSLT_SUCCESS)
-    {
-        cy_eth_phy_log_msg(CYLF_MIDDLEWARE, CY_LOG_ERR, "enable_phy_dp83825i_extended_reg failed with error :  %d \n", (int)result);
-    }
+    /*
+     * This API is a place holder for Ethernet PHY Extended register initialization.
+     */
 
-    cy_eth_phy_log_msg( CYLF_MIDDLEWARE, CY_LOG_DEBUG1, "%s(): END \n", __FUNCTION__ );
     return result;
 }
 
@@ -247,6 +257,10 @@ cy_rslt_t cy_eth_phy_get_linkspeed(uint8_t eth_idx, uint32_t *duplex, uint32_t *
     else if (configured_hw_speed == REGISTER_PHY_REG_SPEED_MASK_100M)
     {
         *speed = CY_EPHY_SPEED_100;
+    }
+    else if(configured_hw_speed ==  REGISTER_PHY_REG_SPEED_MASK_1000M)
+    {
+        *speed = CY_EPHY_SPEED_1000;
     }
     else
     {
@@ -311,4 +325,4 @@ cy_rslt_t cy_eth_phy_driver_deinit(void)
 
     return result;
 }
-#endif // PHY_DEVICE_NAME == DP83825I
+#endif // PHY_DEVICE_NAME == ETH_PHY_LAN8710AI

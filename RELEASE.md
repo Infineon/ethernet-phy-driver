@@ -11,6 +11,10 @@ See the [README.md](./README.md) for a complete description of the [Ethernet PHY
 
 ## Changelog
 
+### v1.2.0
+- Added support for PSOC&trade; Edge E84 (PSE84) platform.
+- Enabled LLVM_ARM toolchain support.
+
 ### v1.1.0
 
 - Provides ethernet APIs to configuring ethernet PHY drivers for DP83825I.
@@ -28,8 +32,9 @@ This version of the library was validated for compatibility with the following s
 
 | Software and tools                                         | Version |
 | :---                                                       | :----:  |
-| ModusToolbox&trade; software environment                   | 3.2     |
-| ModusToolbox&trade; Device Configurator                    | 4.20    |
-| GCC Compiler                                               | 11.3.1  |
-| IAR Compiler                                               | 9.40    |
-| Arm&reg; Compiler 6                                        | 6.16    |
+| ModusToolbox&trade; software environment                   | 3.6     |
+| ModusToolbox&trade; Device Configurator                    | 5.50    |
+| GCC Compiler                                               | 14.2.1  |
+| IAR Compiler                                               | 9.50.2  |
+| Arm&reg; Compiler 6                                        | 6.22    |
+| LLVM compiler                                              | 19.1.5  |

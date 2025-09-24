@@ -10,6 +10,7 @@ The current version of ethernet-phy-driver library has Ethernet PHY-related inte
 - The library contains the necessary ethernet PHY interface APIs for the ethernet-connection-manager library, enabling ethernet-based applications to operate on supported ethernet PHY chips.
 - Supports the Ethernet PHY driver for the PHY chip DP83867IR.
 - Supports the Ethernet PHY driver for the PHY chip DP83825I.
+- Supports the Ethernet PHY driver for the PHY chip LAN8710AI.
 
 ## Supported platforms
 
@@ -17,6 +18,7 @@ This library and its features are supported on the following Infineon platforms:
 
 - [XMC7200 Evaluation Kit (KIT_XMC72_EVK)](https://www.infineon.com/KIT_XMC72_EVK)
 - [XMC7100 Evaluation Kit (KIT_XMC71_EVK_LITE_V1)](https://www.infineon.com/KIT_XMC71_EVK_LITE_V1)
+- PSOC&trade; Edge E84 Evaluation Kit
 
 ## Quick Start
 
@@ -38,52 +40,52 @@ To pull ethernet-core-freertos-lwip-mbedtls create the following *.mtb* file in 
         - Configure "Drive mode" to "Digital HIGH-Z" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "mdc" from the drop-down. 
+    - Select pin "mdc" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/8" from the drop-down.
-    - Select pin "mdio" from the drop-down. 
+    - Select pin "mdio" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer on" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/8" from the drop-down.
-    - Select pin "tx_clk" from the drop-down. 
+    - Select pin "tx_clk" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "tx_ctl" from the drop-down. 
+    - Select pin "tx_ctl" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "txd[0]" from the drop-down. 
+    - Select pin "txd[0]" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "txd[1]" from the drop-down. 
+    - Select pin "txd[1]" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "txd[2]" from the drop-down. 
+    - Select pin "txd[2]" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "txd[3]" from the drop-down. 
+    - Select pin "txd[3]" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "rx_clk" from the drop-down. 
+    - Select pin "rx_clk" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "rx_ctl" from the drop-down. 
+    - Select pin "rx_ctl" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
@@ -114,38 +116,38 @@ To pull ethernet-core-freertos-lwip-mbedtls create the following *.mtb* file in 
     - Switch to the "Peripherals" tab.
     - Select Communication->"Ethernet 0".
     - In "Ethernet - Parameters" pane, go to "Connections" section and configure each pin as shown below.
-    - Select pin "ref_clk" from the drop-down. 
+    - Select pin "ref_clk" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Digital HIGH-Z" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/2" from the drop-down.
-    - Select pin "mdc" from the drop-down. 
+    - Select pin "mdc" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/8" from the drop-down.
-    - Select pin "mdio" from the drop-down. 
+    - Select pin "mdio" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer on" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
         - Configure "Drive Strength" to "1/8" from the drop-down.
-    - Select pin "tx_ctl" from the drop-down. 
+    - Select pin "tx_ctl" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
-    - Select pin "txd[0]" from the drop-down. 
+    - Select pin "txd[0]" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
-    - Select pin "txd[1]" from the drop-down. 
+    - Select pin "txd[1]" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
-    - Select pin "rx_ctl" from the drop-down. 
+    - Select pin "rx_ctl" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
-    - Select pin "rx_er" from the drop-down. 
+    - Select pin "rx_er" from the drop-down.
         - Click on "Go to signal" of selected pin,
         - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
         - Configure "Initial Drive state" to "Low (0)" from the drop-down.
@@ -168,7 +170,85 @@ To pull ethernet-core-freertos-lwip-mbedtls create the following *.mtb* file in 
         - Configure "Initial Drive state" to "HIGH (1)" from the drop-down.
     - Save the configuration to generate the necessary code.
 
-5. The *ethernet PHY driver* library disables all the debug log messages by default. To enable log messages, the application must perform the following:
+5. To configure the pin connections on [PSOC™ Edge E84 Evaluation Kit (KIT_PSE84_EVAL)](https://www.infineon.com/KIT_PSE84_EVAL) with PHY chip LAN8710AI, open design.modus file and do the following configuration settings in the ModusToolbox&trade; Device Configurator.
+    - Switch to the "Pins" tab.
+    - Deselect the "Smart I/O 11".
+    - Switch to the "Peripherals" tab.
+    - Deselect the "Serial Communication Block (SCB) 4".
+    - Select Communication->"Ethernet 0".
+    - In "Ethernet - Parameters" pane, go to "Network Interface Settings" section and configure PHY parameters.
+    - Configure "PHY Interconnect" to "MII" from the drop-down.
+    - Configure "PHY Device" to "LAN8710AI" from the drop-down.
+    - In "Ethernet - Parameters" pane, go to "Connections" section and configure each pin as shown below.
+    - Select pin "mdc" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+        - Configure "Drive Strength" to "1/8" from the drop-down.
+    - Select pin "mdio" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+        - Configure "Drive Strength" to "1/8" from the drop-down.
+    - Select pin "tx_clk" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "tx_ctl" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "tx_er" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "txd[0]" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "txd[1]" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "txd[2]" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "txd[3]" from the checkbox in the pop-up.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Strong Drive, Input buffer off" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rx_clk" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rx_ctl" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rx_er" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rxd[0]" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rxd[1]" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rxd[2]" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Select pin "rxd[3]" from the drop-down.
+        - Click on "Go to signal" of selected pin,
+        - Configure "Drive mode" to "Digital HIGH-Z, Input buffer on" from the drop-down.
+        - Configure "Initial Drive state" to "Low (0)" from the drop-down.
+    - Save the configuration to generate the necessary code.
+
+6. The *ethernet PHY driver* library disables all the debug log messages by default. To enable log messages, the application must perform the following:
     - Add the `ENABLE_ETH_PHY_DRIVER_LOGS` macro to the *DEFINES* in the code example's Makefile. The Makefile entry would look like as follows:
        ```
        DEFINES+=ENABLE_ETH_PHY_DRIVER_LOGS
