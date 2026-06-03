@@ -18,7 +18,8 @@ This library and its features are supported on the following Infineon platforms:
 
 - [XMC7200 Evaluation Kit (KIT_XMC72_EVK)](https://www.infineon.com/KIT_XMC72_EVK)
 - [XMC7100 Evaluation Kit (KIT_XMC71_EVK_LITE_V1)](https://www.infineon.com/KIT_XMC71_EVK_LITE_V1)
-- PSOC&trade; Edge E84 Evaluation Kit
+- [PSOC&trade; Edge E84 Evaluation Kit](https://www.infineon.com/evaluation-board/kit-pse84-eval)
+- TRAVEO&trade; T2G Body High 16M Lite Kit (KIT_T2G_B-H-16M_LITE)
 
 ## Quick Start
 
@@ -255,6 +256,10 @@ To pull ethernet-core-freertos-lwip-mbedtls create the following *.mtb* file in 
        ```
     - Call the `cy_log_init()` function provided by the *cy-log* module. cy-log is part of the *connectivity-utilities* library. See [connectivity-utilities library API documentation](https://infineon.github.io/connectivity-utilities/api_reference_manual/html/group__logging__utils.html) for cy-log details.
 
+## Limitations
+
+- PHY drivers rely on the default ModusToolbox Ethernet personality names, `eth_0` for the first interface instance and `eth_1` for the second. Custom interface names are not supported because the driver source is bound at compile time to the generated `eth_<n>_*` macros from the device personality. If the GUI renames the interfaces, the driver will no longer compile unless the source and generated configuration are updated together.
+
 ## Additional information
 
 - [Ethernet PHY Driver RELEASE.md](./RELEASE.md)
@@ -265,6 +270,9 @@ To pull ethernet-core-freertos-lwip-mbedtls create the following *.mtb* file in 
 
 - [Connectivity Utilities API documentation - for cy-log details](https://Infineon.github.io/connectivity-utilities/api_reference_manual/html/group__logging__utils.html)
 
-- [ModusToolbox&trade; software environment, quick start guide, documentation, and videos](https://www.cypress.com/products/modustoolbox-software-environment)
+- [ModusToolbox&trade; software environment, quick start guide, documentation, and videos](https://www.infineon.com/design-resources/development-tools/sdk/modustoolbox-software)
 
 - [ModusToolbox&trade; cloud connectivity code examples](https://github.com/Infineon?q=mtb-example-anycloud%20NOT%20Deprecated)
+
+---
+© Infineon Technologies AG or an affiliate of Infineon Technologies AG, 2024-2026.

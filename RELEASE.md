@@ -11,6 +11,9 @@ See the [README.md](./README.md) for a complete description of the [Ethernet PHY
 
 ## Changelog
 
+### v1.3.0
+- Added LAN8670 PHY driver support.
+
 ### v1.2.0
 - Added support for PSOC&trade; Edge E84 (PSE84) platform.
 - Enabled LLVM_ARM toolchain support.
@@ -38,3 +41,6 @@ This version of the library was validated for compatibility with the following s
 | IAR Compiler                                               | 9.50.2  |
 | Arm&reg; Compiler 6                                        | 6.22    |
 | LLVM compiler                                              | 19.1.5  |
+
+---
+© Infineon Technologies AG or an affiliate of Infineon Technologies AG, 2024-2026.
