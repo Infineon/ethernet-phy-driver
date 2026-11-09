@@ -3,7 +3,7 @@
 ## Overview
 
 - The library provides the Ethernet PHY-related interface APIs as required by Ethernet connection manager library to enable the completion of Ethernet-based applications on supported platforms.
-The current version of ethernet-phy-driver library has Ethernet PHY-related interface APIs implemented for PHY chip DP83867IR and DP83825I.
+The current version of ethernet-phy-driver library has Ethernet PHY-related interface APIs implemented for PHY chip DP83867IR, DP83825I, LAN8710AI, LAN8670, RTL8211FI, DP83848VV and LAN8720A.
 
 ## Features and functionality
 
@@ -11,6 +11,10 @@ The current version of ethernet-phy-driver library has Ethernet PHY-related inte
 - Supports the Ethernet PHY driver for the PHY chip DP83867IR.
 - Supports the Ethernet PHY driver for the PHY chip DP83825I.
 - Supports the Ethernet PHY driver for the PHY chip LAN8710AI.
+- Supports the Ethernet PHY driver for the PHY chip LAN8670.
+- Supports the Ethernet PHY driver for the PHY chip RTL8211FI.
+- Supports the Ethernet PHY driver for the PHY chip DP83848VV.
+- Supports the Ethernet PHY driver for the PHY chip LAN8720A.
 
 ## Supported platforms
 
@@ -20,6 +24,8 @@ This library and its features are supported on the following Infineon platforms:
 - [XMC7100 Evaluation Kit (KIT_XMC71_EVK_LITE_V1)](https://www.infineon.com/KIT_XMC71_EVK_LITE_V1)
 - [PSOC&trade; Edge E84 Evaluation Kit](https://www.infineon.com/evaluation-board/kit-pse84-eval)
 - TRAVEO&trade; T2G Body High 16M Lite Kit (KIT_T2G_B-H-16M_LITE)
+- [TRAVEO&trade; T2G Cluster 6M Lite Kit](https://www.infineon.com/evaluation-board/KIT-T2G-C-2D-6M-LITE)
+- [TRAVEO&trade; T2G Cluster 4M Lite Kit](https://www.infineon.com/evaluation-board/KIT-T2G-C-2D-4M-LITE)
 
 ## Quick Start
 

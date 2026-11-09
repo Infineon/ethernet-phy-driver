@@ -87,6 +87,9 @@
 #define REGISTER_PHY_REG_SPEED_MASK_100M    (0x2000)                /* Bit 6, 13: Set to 0 and 1 respectively for 100M speed */
 #define REGISTER_PHY_REG_SPEED_MASK_1000M   (0x0040)                /* Bit 6, 13: Set to 1 and 0 respectively for 1000M speed */
 
+#define REGISTER_ADDRESS_PHY_REG_CFG3           (0x1EU)             /* Configuration Register 3 (CFG3) address */
+#define REGISTER_PHY_REG_ROBUST_AUTO_MDIX_MASK  (1UL << 9U)         /* Bit 9: Enable Robust Auto MDI/MDI-X resolution */
+
 /********************************************************/
 
 cy_stc_ephy_t phyObj[2];
@@ -95,9 +98,12 @@ cy_rslt_t enable_phy_DP83867IR_extended_reg(ETH_Type *reg_base, uint32_t phy_spe
 {
     cy_rslt_t    result = CY_RSLT_SUCCESS;
 
-    if(phy_speed == CY_EPHY_SPEED_100)
+    if((phy_speed == CY_EPHY_SPEED_100) || (phy_speed == CY_EPHY_SPEED_10))
     {
-        Cy_ETHIF_PhyRegWrite(reg_base, 0x10, 0x5028, PHY_ADDR); /** Disable auto negotiation for MDI/MDI-X **/
+        /* Enable Robust Auto-MDIX for forced speeds, preserving other CFG3 settings. */
+        uint32_t cfg3 = Cy_ETHIF_PhyRegRead(reg_base, REGISTER_ADDRESS_PHY_REG_CFG3, PHY_ADDR);
+        cfg3 |= REGISTER_PHY_REG_ROBUST_AUTO_MDIX_MASK;
+        Cy_ETHIF_PhyRegWrite(reg_base, REGISTER_ADDRESS_PHY_REG_CFG3, cfg3, PHY_ADDR);
     }
     else if(phy_speed == CY_EPHY_SPEED_1000 || phy_speed == CY_EPHY_SPEED_AUTO)
     {

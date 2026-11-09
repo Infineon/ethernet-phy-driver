@@ -11,6 +11,10 @@ See the [README.md](./README.md) for a complete description of the [Ethernet PHY
 
 ## Changelog
 
+### v1.4.0
+- Added RTL8211FI, DP83848VV and LAN8720A PHY drivers support.
+- Enabled Robust Auto-MDIX for forced speeds on the DP83867IR.
+
 ### v1.3.0
 - Added LAN8670 PHY driver support.
 
@@ -35,7 +39,7 @@ This version of the library was validated for compatibility with the following s
 
 | Software and tools                                         | Version |
 | :---                                                       | :----:  |
-| ModusToolbox&trade; software environment                   | 3.6     |
+| ModusToolbox&trade; software environment                   | 3.8     |
 | ModusToolbox&trade; Device Configurator                    | 5.50    |
 | GCC Compiler                                               | 14.2.1  |
 | IAR Compiler                                               | 9.50.2  |
